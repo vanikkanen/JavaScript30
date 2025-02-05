@@ -38,28 +38,67 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    
+    let oldInventors = inventors.filter(person => (person.year >= 1500 && person.year < 1600))
+    console.log(oldInventors)
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+    let inventorNames = inventors.map(person => `${person.first} ${person.last}`)
+    console.log(inventorNames)
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+
+    let sortedInventors = inventors.sort((a, b) => a.year - b.year)
+    console.log(sortedInventors)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    let yearCount = inventors.reduce((sum, person) => sum + (person.passed - person.year), 0)
+    console.log(yearCount)
+    
     // 5. Sort the inventors by years lived
+
+    let sortedInventorsByAge = inventors.sort((a, b) =>{
+      let lastGuy = a.passed - a.year
+      let nextGuy = b.passed - b.year
+      return nextGuy - lastGuy
+    })
+    console.table(sortedInventorsByAge)
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // let category = document.querySelector(".mw-category")
+    // let links = category.querySelectorAll("a")
+    // let boulevards = [...links]
+    //     .map(link => link.textContent)
+    //     .filter(streetname => streetname.includes("de"))
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    let sortedPeople = people.sort((personA, personB) => {
+      surnameA = personA.split(", ")[0]
+      surnameB = personB.split(", ")[0]
+      return surnameA.localeCompare(surnameB)
+    })
+
+    console.log(sortedPeople)
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    let ans = data.reduce((obj, instance) => {
+      obj[instance] = (obj[instance]+1) || 1
+      return obj
+    }, {})
+
+    console.log(ans)
 
   </script>
 </body>
